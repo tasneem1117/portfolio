@@ -1,0 +1,808 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --bg-dark: #0f172a;
+    --bg-darker: #020617;
+    --primary: #8b5cf6; /* Violet */
+    --primary-glow: #7c3aed;
+    --secondary: #06b6d4; /* Cyan */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(30, 41, 59, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-main: 'Inter', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --container-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
+}
+
+/* =========================================
+   2. UTILITIES & LAYOUT
+   ========================================= */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.bg-darker {
+    background-color: rgba(2, 6, 23, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-subtitle {
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-glow));
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--glass-border);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* =========================================
+   3. NAVIGATION
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.dot {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.btn-nav {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--primary) !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    position: relative;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content h2 {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.hero-desc {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(6, 182, 212, 0.1);
+    color: var(--secondary);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 350px;
+    height: 350px;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 2;
+    background-color: #1e293b; /* Fallback */
+}
+
+.glow-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    filter: blur(40px);
+    opacity: 0.5;
+    z-index: 1;
+    animation: pulse 4s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.4; }
+    100% { transform: scale(1.05); opacity: 0.6; }
+}
+
+/* =========================================
+   5. ABOUT & EDUCATION
+   ========================================= */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.about-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    margin-bottom: 30px;
+    border-left: 3px solid var(--primary);
+    padding-left: 30px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* =========================================
+   6. SKILLS
+   ========================================= */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-category h3 {
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.tag:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+/* =========================================
+   7. EXPERIENCE
+   ========================================= */
+.experience-grid {
+    display: grid;
+    /* Divide the space into 4 equal columns */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+}
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.exp-card {
+    /* Top cards take 2 columns each (half the grid) */
+    grid-column: span 2;
+}
+
+.exp-card.centered-card {
+    /* Bottom card starts at column 2 and ends at 4 (the middle) */
+    grid-column: 2 / 4;
+}
+
+/* Mobile Fix: Stack them normally on small screens */
+@media (max-width: 992px) {
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+    .exp-card, .exp-card.centered-card {
+        grid-column: span 1;
+    }
+}
+.exp-date {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+.exp-card ul {
+    list-style: none;
+    margin-top: 20px; /* This creates the "line break" effect you're looking for */
+}
+
+.exp-card li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.exp-card li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+}
+
+/* =========================================
+   8. SERVICES
+   ========================================= */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    text-align: center;
+}
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* =========================================
+   9. PROJECTS
+   ========================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    height: 100%; /* Ensures all cards are equal height */
+}
+
+.project-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Makes the content area fill the card */
+}
+
+.project-links {
+    margin-top: auto; /* This pushes the link to the bottom of the card */
+    padding-top: 15px;
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+}
+.project-image {
+    width: 100%;
+    /* This is the key fix: It forces a 16:9 or 3:2 landscape ratio */
+    aspect-ratio: 16 / 10; 
+    overflow: hidden;
+    background: #1a1a1a; /* Backup color while images load */
+}
+
+.project-img-src {
+    width: 100%;
+    height: 100%;
+    /* This ensures the image covers the area without stretching vertically */
+    object-fit: cover; 
+    object-position: center;
+    display: block;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Ensure cards don't get too skinny */
+    min-width: 0; 
+}
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.tech-stack span {
+    background: rgba(139, 92, 246, 0.1); /* Light purple background */
+    color: #a78bfa; /* Light purple text to match your theme */
+    border: 1px solid rgba(139, 92, 246, 0.3); /* Subtle border */
+    padding: 4px 10px;
+    border-radius: 20px; /* Makes them pill-shaped */
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Optional: Add a small glow on hover */
+.tech-stack span:hover {
+    background: rgba(77, 8, 235, 0.2);
+    transform: translateY(-2px);
+}
+.project-content p::before {
+    content: "▹"; /* The arrow symbol */
+    color: #60a5fa; /* Matches your blue accent color */
+    font-size: 10px;
+    margin-right: 8px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/* Ensures the text doesn't wrap awkwardly under the arrow */
+.project-content p {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.6;
+}
+/* Add this to your CSS file */
+.project-content h3 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle thin line */
+    padding-bottom: 10px; /* Space between text and line */
+    margin-bottom: 15px; /* Space between line and description */
+    width: 100%; /* Ensures line spans the card width */
+}
+/* =========================================
+   10. ACHIEVEMENTS & TESTIMONIALS
+   ========================================= */
+.certificate-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.cert-info {
+    flex: 1;
+}
+
+.cert-thumbnail {
+    width: 150px; /* Adjust size as needed */
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.cert-thumbnail:hover {
+    transform: scale(1.05);
+    border-color: #8b5cf6;
+}
+
+.cert-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumb-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(139, 92, 246, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cert-thumbnail:hover .thumb-overlay {
+    opacity: 1;
+}
+
+.thumb-overlay span {
+    font-size: 0.7rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.verify-btn {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #a78bfa;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.verify-btn:hover {
+    border-bottom: 1px solid #a78bfa;
+}
+
+/* Mobile Fix */
+@media (max-width: 600px) {
+    .certificate-card {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+    .cert-thumbnail {
+        width: 100%;
+        height: 180px;
+    }
+}
+
+
+
+/* =========================================
+   11. CONTACT
+   ========================================= */
+  /* --- Desktop & General Styles --- */
+#contact, .contact-section {
+    background-color: #0c1626; 
+    padding: 80px 0; 
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+.contact-card.glass-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 40px;
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05); /* Assuming glass effect */
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.contact-info-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.info-item h4 {
+    color: #00d4ff;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.info-item p {
+    color: #fff;
+    margin: 0;
+}
+
+.contact-actions-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 200px;
+    align-items: flex-end; 
+}
+
+/* Button Styles */
+.btn {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+}
+
+.send-message-btn {
+    background: #8b5cf6;
+    border: none;
+    font-weight: 600;
+}
+
+.send-message-btn:hover {
+    background: #7c3aed;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+}
+
+/* --- Mobile Responsive Fixes --- */
+@media screen and (max-width: 768px) {
+    .contact-card.glass-card {
+        flex-direction: column !important; /* Stack vertically */
+        text-align: center !important;
+        align-items: center !important;
+        padding: 30px 20px !important;
+        gap: 30px;
+    }
+
+    .contact-info-left {
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .contact-actions-right {
+        align-items: center !important;
+        width: 100%;
+        min-width: unset;
+    }
+
+    .info-item p {
+        word-break: break-all; /* Prevents long emails from overflowing */
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        width: 100%; /* Full width buttons for easier tapping */
+        max-width: 280px;
+    }
+}
+/* =========================================
+   12. FOOTER
+   ========================================= */
+.footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   13. RESPONSIVE DESIGN
+   ========================================= */
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-desc {
+        margin: 0 auto 30px auto;
+    }
+
+    .nav-links {
+        display: none; /* Simple hide for mobile for pure CSS approach */
+    }
+    
+    .experience-grid, .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-wrapper {
+        width: 280px;
+        height: 280px;
+        margin: 0 auto;
+    }
+}
